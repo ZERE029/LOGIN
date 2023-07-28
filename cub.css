@@ -19,3 +19,6 @@ input{
     border: none;
     outline: none;
 }
+th{
+    color: aliceblue;
+}
