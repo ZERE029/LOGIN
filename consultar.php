@@ -8,6 +8,12 @@ if (isset($_POST['nome'])) {
         or die($mysqli->error);
 }
 ?>
+<?php
+  $consultar_banco = "SELECT * FROM tabela_login";
+
+  $retorno_consulta = $mysqli->query($consultar_banco) or die($mysqli->error);
+  $quantidade_pedidos = $retorno_consulta->num_rows;
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -25,12 +31,13 @@ if (isset($_POST['nome'])) {
     <h1>consultar logins</h1>
     <table class="table table-striped">
         <tr>
+            <th>ID:</th>
             <th>Nome:</th>
             <th>senha</th>
         </tr>
         <tr>
             <?php
-            while ($logins = $consulta->fetch_assoc()) {
+            while ($logins = $retorno_consulta->fetch_assoc()) {
             ?>
         <tr>
             <td><?php echo $logins['id_login']; ?></td>

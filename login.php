@@ -1,3 +1,13 @@
+<?php
+include("conexao.php");
+if (isset($_POST['nome'])) {
+    $nome = $_POST['nome'];
+    $senha = $_POST['senha'];
+    $mysqli->query("INSERT INTO tabela_login (login,senha)
+    values ('$nome', '$senha')")
+        or die($mysqli->error);
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
