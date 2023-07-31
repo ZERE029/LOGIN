@@ -1,10 +1,10 @@
 <?php
 include("conexao.php");
-if (isset($_POST['nome'])) {
-    $nome = $_POST['nome'];
+if (isset($_POST['login'])) {
+    $login = $_POST['login'];
     $senha = $_POST['senha'];
-    $mysqli->query("INSERT INTO tabela_login (nome,senha)
-    values ('$nome', '$senha')")
+    $mysqli->query("INSERT INTO tabela_login (login,senha)
+    values ('$login', '$senha')")
         or die($mysqli->error);
 }
 ?>
@@ -23,11 +23,12 @@ if (isset($_POST['nome'])) {
 <body>
     <div class="login">
         <h1>Faça seu cadastro</h1>
-        <form action="login.php" method="POST">
-            <input type="email" name="nome" placeholder="Email" required maxlength="25"><br /><br />
+        <form action="" method="POST">
+            <input type="email" name="login" placeholder="Email" required maxlength="25"><br /><br />
             <input type="password" name="senha" placeholder="Senha" required maxlength="20"> <br /><br />
             <input class="btn btn-success" type="submit" value="cadastrar">
             <input class="btn btn-danger" type="reset" value="limpar">
+            <a class="btn btn-warning" href="consultar.php">Consultar</a>
         </form>
     </div>
 </body>
