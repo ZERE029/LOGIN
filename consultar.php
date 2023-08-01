@@ -3,8 +3,8 @@ include("conexao.php");
 if (isset($_POST['email'])) {
     $nome = $_POST['email'];
     $senha = $_POST['senha'];
-    $mysqli->query("INSERT INTO tabela_login (email,senha)
-    values ('$email', '$senha')")
+    $mysqli->query("INSERT INTO tabela_login (login,senha)
+    values ('$nome', '$senha')")
         or die($mysqli->error);
 }
 ?>
@@ -31,7 +31,7 @@ if (isset($_POST['email'])) {
     <table class="table table-striped">
         <tr>
             <th>ID:</th>
-            <th>Email:</th>
+            <th>Nome:</th>
             <th>senha</th>
         </tr>
         <tr>
@@ -50,6 +50,7 @@ if (isset($_POST['email'])) {
     </tr>
     </table>
     <a class="btn btn-warning" href="index.html">Voltar para Início</a>
+    <a class="btn btn-danger" href="deletar.php">Deletar</a>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>

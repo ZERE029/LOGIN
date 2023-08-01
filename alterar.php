@@ -77,9 +77,9 @@ if (isset($_POST['bt_id'])) {
                         
                         
                         <label class="form-label" for="">Login</label>  
-                        <input class="form-control" type="text" name="nome" value="<?php
-                        if(isset($consultar['nome'])){
-                            echo $consultar['nome']; 
+                        <input class="form-control" type="text" name="bt_login" value="<?php
+                        if(isset($consultar['login'])){
+                            echo $consultar['login']; 
                         }else{
                             echo "Sem valor";
                         }
@@ -89,7 +89,7 @@ if (isset($_POST['bt_id'])) {
 
                     <div class="mb-3">
                         <label class="form-label" for="">Senha</label>
-                        <input class="form-control" type="text" name="senha" value="<?php
+                        <input class="form-control" type="text" name="bt_senha" value="<?php
                         if(isset($consultar['senha'])){
                             echo $consultar['senha']; 
                         }else{
@@ -101,9 +101,11 @@ if (isset($_POST['bt_id'])) {
                         ?>">
                     </div>
 
-                    <input class="btn btn-primary" type="submit" value="Cadastrar">
-                    <input class="btn btn-danger" type="reset">
+                    <input class="btn btn-warning" type="submit" value="Alterar"> 
+                    <a class="btn btn-danger" href="deletar.php?id_deletar=<?php if(isset($_POST['bt_id'])){echo $_POST['bt_id'];}?>">Deletar</a>
+                    <a class="btn btn-primary" href="index.html">Voltar</a>
                 </form>
+
             </div>
         </div>
         <div class="col-4">

@@ -40,7 +40,7 @@
 
     <body>
         <div class="container">
-            <h1>TEM CERTEZA QUE DESEJA DELETAR: <?php echo $logins['email'] ?>?</h1>
+            <h1>TEM CERTEZA QUE DESEJA: <?php echo $logins['email'] ?>?</h1>
             <p>Nome:  <?php echo $logins['email'] ?></p>
             <p>Senha: <?php echo $logins['senha']?></p>   
         
