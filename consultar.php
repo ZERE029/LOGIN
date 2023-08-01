@@ -1,10 +1,10 @@
 <?php
 include("conexao.php");
-if (isset($_POST['nome'])) {
-    $nome = $_POST['nome'];
+if (isset($_POST['email'])) {
+    $nome = $_POST['email'];
     $senha = $_POST['senha'];
-    $mysqli->query("INSERT INTO tabela_login (login,senha)
-    values ('$nome', '$senha')")
+    $mysqli->query("INSERT INTO tabela_login (email,senha)
+    values ('$email', '$senha')")
         or die($mysqli->error);
 }
 ?>
@@ -31,7 +31,7 @@ if (isset($_POST['nome'])) {
     <table class="table table-striped">
         <tr>
             <th>ID:</th>
-            <th>Nome:</th>
+            <th>Email:</th>
             <th>senha</th>
         </tr>
         <tr>
@@ -40,16 +40,16 @@ if (isset($_POST['nome'])) {
             ?>
         <tr>
             <td><?php echo $logins['id_login']; ?></td>
-            <td><?php echo $logins['login']; ?></td>
+            <td><?php echo $logins['email']; ?></td>
             <td><?php echo $logins['senha']; ?></td>
+            <td><a class="btn btn-danger" href="deletar.php?tabela_login=<?php echo $logins['id_login']; ?>">Deletar</a></td>
         </tr>
     <?php
             }
     ?>
     </tr>
     </table>
-    <a class="btn btn-warning" href="login.php">Voltar para Início</a>
-    <a class="btn btn-danger" href="deletar.php">Deletar</a>
+    <a class="btn btn-warning" href="index.html">Voltar para Início</a>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>

@@ -1,36 +1,40 @@
 <?php
-include("conexao.php");
-if (isset($_POST['nome'])) {
-    $nome = $_POST['nome'];
-    $senha = $_POST['senha'];
-    $mysqli->query("INSERT INTO tabela_login (nome,senha)
-    values ('$nome', '$senha')")
-        or die($mysqli->error);
+
+$servername = "localhost";
+$username = "zere";
+$password = "1234";
+$dbname = "modelo_banco";
+
+$mysqli = new mysqli ($servername, $username, $password, $dbname);
+ 
+if($mysqli->connect_errno){
+     echo "Falha ao conectar: (" . $mysqli->connect_errno . ") " . $mysqli->connect_errno;
 }
+
+
+$email = $_POST['email'];
+$senha = $_POST['senha'];
+
+
+// Verifica se o usuário já existe no banco de dados
+$conn = new mysqli($servername, $username, $password, $dbname);
+$sql = "SELECT * FROM tabela_login WHERE email = '$email'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $existe = "Usuário já existe!";
+    echo '<span style="color: red;">' . $existe . '</span>';
+} else {
+    // Insere o novo usuário no banco de dados
+    $sql = "INSERT INTO tabela_login (email,senha) VALUES ('$email','$senha')";
+    if ($conn->query($sql) === TRUE) {
+        $sucesso = "Cadastro realizado com sucesso!";
+        echo '<span style="color: green;">' . $sucesso . '</span>';
+    } else {
+        $erro = "Erro ao cadastrar usuário:";
+        echo '<span style="color: red;">' .$erro . $conn->error .'</span>';
+    }
+}
+
+$conn->close();
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="cub.css">
-    <title>Login</title>
-    <script src="zere.js"></script>
-</head>
-
-<body>
-    <div class="login">
-        <h1>Faça seu cadastro</h1>
-        <form action="login.php" method="POST">
-            <input type="email" name="nome" placeholder="Email" required maxlength="25"><br /><br />
-            <input type="password" name="senha" placeholder="Senha" required maxlength="20"> <br /><br />
-            <input class="btn btn-success" type="submit" value="cadastrar">
-            <input class="btn btn-danger" type="reset" value="limpar">
-        </form>
-    </div>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-
-</html>

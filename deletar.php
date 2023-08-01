@@ -1,8 +1,8 @@
 <?php
     include("conexao.php");  // Arquivo php referente ao banco de dados   
     
-    if(isset($_GET['codigo_bebida'])){
-        $id_login = $_GET['codigo_bebida'];
+    if(isset($_GET['tabela_login'])){
+        $id_login = $_GET['tabela_login'];
         $sql_consultar = "SELECT * FROM tabela_login WHERE id_login = '$id_login'";
         $comando_sql = $mysqli->query($sql_consultar) or die($mysqli->error);
         $logins = $comando_sql->fetch_assoc();
@@ -13,7 +13,7 @@
     
             $deu_certo = $mysqli->query($sql_deletar) or die ($mysqli->error);
 
-            header("location:consultar.php");
+            header("location: consultar.php");
             
            // var_dump($mysqli);
         }
@@ -40,10 +40,9 @@
 
     <body>
         <div class="container">
-            <h1>DELETAR</h1>
-            <h1>ID da Bebida: <?php echo $logins['id_login']?></h1>
-            <p>Nome da Bebida: <?php echo $logins['nome'] ?></p>
-            <p>Quantidade: <?php echo $logins['senha']?></p>
+            <h1>TEM CERTEZA QUE DESEJA DELETAR: <?php echo $logins['email'] ?>?</h1>
+            <p>Nome:  <?php echo $logins['email'] ?></p>
+            <p>Senha: <?php echo $logins['senha']?></p>   
         
             <form action="" method="post">
                 <input name="btn_deletar" class="btn btn-danger" type="submit" value="DELETAR">

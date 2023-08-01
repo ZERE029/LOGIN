@@ -1,3 +1,21 @@
+document.getElementById('cadastroForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const formData = new FormData(this);
+  const xhr = new XMLHttpRequest();
+
+  xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+          const resultadoDiv = document.getElementById('resultado');
+          resultadoDiv.innerHTML = xhr.responseText;
+          document.getElementById('cadastroForm').reset();
+      }
+  };
+
+  xhr.open('POST', 'index.php', true);
+  xhr.send(formData);
+});
+
 function formatarCPF() {
     var input = document.getElementById("cpf");
     var cpf = input.value.replace(/\D/g, ""); // Remove todos os caracteres não numéricos
@@ -25,3 +43,5 @@ function formatarCEP() {
       error.style.display = "block";
     }
   }
+  
+ 
