@@ -2,8 +2,6 @@
 include("conexao.php");
 if (isset($_POST['bt_login'])) {
 
-    
-
     $id_login_alterar = $_POST['bt_id_alterar'];
     $login = $_POST['bt_login'];
     $senha = $_POST['bt_senha'];
